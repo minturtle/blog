@@ -1,0 +1,28 @@
+
+
+#header{
+    margin-bottom:5%;
+}
+
+.container{
+    width:70%;
+    margin: 0 auto;
+}
+
+.content-card{
+    color:black;
+    text-decoration:none;
+}
+
+.content-card:hover{
+    text-decoration:underline;
+    color: rgb(80,80,80);
+}
+.card-writer{
+    margin-top:1%;
+}
+
+#footer{
+    background-color:rgba(0,0,0,.08);
+
+}

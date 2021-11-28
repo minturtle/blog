@@ -1,4 +1,4 @@
-package com.portfolio.portfolio.domain;
+package com.blog.blog.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,8 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter @Setter

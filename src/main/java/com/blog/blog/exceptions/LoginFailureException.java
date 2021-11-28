@@ -1,4 +1,4 @@
-package com.portfolio.portfolio.exceptions;
+package com.blog.blog.exceptions;
 
 public class LoginFailureException extends RuntimeException{
     public LoginFailureException() {

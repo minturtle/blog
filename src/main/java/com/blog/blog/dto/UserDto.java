@@ -1,18 +1,14 @@
-package com.portfolio.portfolio.dto;
+package com.blog.blog.dto;
 
-import com.portfolio.portfolio.domain.User;
+import com.blog.blog.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.NotEmpty;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserJoinDto {
+public class UserDto {
     private String username;
     private String email;
     private String password;

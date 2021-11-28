@@ -1,14 +1,14 @@
-package com.portfolio.portfolio.service;
+package com.blog.blog.service;
 
-import com.portfolio.portfolio.domain.User;
-import com.portfolio.portfolio.dto.UserJoinDto;
-import com.portfolio.portfolio.dto.UserLoginDto;
-import com.portfolio.portfolio.exceptions.LoginFailureException;
-import com.portfolio.portfolio.exceptions.UserJoinFailureException;
-import com.portfolio.portfolio.repository.UserRepository;
+import com.blog.blog.domain.User;
+import com.blog.blog.dto.UserDto;
+import com.blog.blog.exceptions.LoginFailureException;
+import com.blog.blog.exceptions.UserJoinFailureException;
+import com.blog.blog.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +18,7 @@ public class UserService {
 
 
 
-    public void join(UserJoinDto userDto) throws UserJoinFailureException{
+    public void join(UserDto userDto) throws UserJoinFailureException{
         userJoinValidate(userDto); //UserJoinFailureException 발생가능
 
         User user = userDto.createUser();
@@ -28,18 +28,20 @@ public class UserService {
 
 
     @Transactional(readOnly = true)
-    public User login(UserLoginDto userDto) throws LoginFailureException{
-        User findUser = userRepository.findByUsernameAndPassword(userDto.getUsername(), userDto.getPassword());
+    public User login(UserDto userDto) throws LoginFailureException{
+        User findUser = userRepository.findByUsername(userDto.getUsername());
         if(findUser == null){
-            throw new LoginFailureException("아이디 또는 비밀번호가 잘못되었습니다.");
+            throw new LoginFailureException("존재하지 않는 아이디입니다.");
+        }
+        else if(isValidPassword(userDto, findUser)){
+            throw new LoginFailureException("잘못된 비밀번호 입니다.");
         }
         return findUser;
     }
 
 
-
-    private void userJoinValidate(UserJoinDto userDto) throws UserJoinFailureException{
-        if(userDto.getEmail() == null || userDto.getUsername() == null || userDto.getPassword() == null){
+    private void userJoinValidate(UserDto userDto) throws UserJoinFailureException{
+        if(!StringUtils.hasText(userDto.getEmail()) || !StringUtils.hasText(userDto.getUsername()) || !StringUtils.hasText(userDto.getPassword())){
             throw new UserJoinFailureException("이메일, 유저 이름, 비밀번호는 필수 값입니다.");
         }
         else if(userRepository.findByUsername(userDto.getUsername()) != null){
@@ -51,5 +53,9 @@ public class UserService {
         else if(userDto.getPassword().length() < 4){
             throw new UserJoinFailureException("비밀번호는 4글자 이상이여야 합니다.");
         }
+    }
+
+    private boolean isValidPassword(UserDto userDto, User findUser) {
+        return !findUser.getPassword().equals(userDto.getPassword());
     }
 }

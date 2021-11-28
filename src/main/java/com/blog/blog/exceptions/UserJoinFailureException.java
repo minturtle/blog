@@ -1,4 +1,4 @@
-package com.portfolio.portfolio.exceptions;
+package com.blog.blog.exceptions;
 
 public class UserJoinFailureException extends RuntimeException{
     public UserJoinFailureException() {

@@ -1,14 +1,14 @@
-package com.portfolio.portfolio;
+package com.blog.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class PortfolioApplication {
+public class BlogApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PortfolioApplication.class, args);
+		SpringApplication.run(BlogApplication.class, args);
 	}
 
 }

@@ -12,26 +12,21 @@
     <div th:replace="/fragments/header.html :: fragment-header"></div>
 
     <div class="container">
-        <div class="row row-cols-1 row-cols-md-1 g-4">
-            <div class="col">
-                <a href ="#" class="content-card">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <h5 class="card-writer">writer</h5>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-                </a>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" name="username" id="username">
         </div>
-
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="password">
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="login()">Submit</button>
 
     </div>
 
-
     <div th:replace="/fragments/footer.html :: fragment-footer"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src ="/js/user.js"></script>
 </body>
 </html>

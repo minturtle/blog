@@ -31,7 +31,8 @@ function login(){
         contentType: "application/json",
         data: JSON.stringify(reqBody)
     }).done((res)=>{
-        alert(res.message);
+        alert(res.message)
+        location.href= "/"
     }).fail((err)=>{
         alert(err.responseJSON.err);
     })

@@ -12,6 +12,17 @@ import java.util.List;
 @Entity
 @Getter @Setter
 public class Board {
+    public Board() {
+        this.count = 0;
+    }
+
+    public Board(String title, String content, User writer) {
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.count = 0;
+    }
+
     @Id @GeneratedValue
     private Integer id;
 
@@ -20,7 +31,7 @@ public class Board {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private User writer;
 
     private Integer count; //조회수
 

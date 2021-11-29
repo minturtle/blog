@@ -21,7 +21,7 @@ public class UserService {
     public void join(UserDto userDto) throws UserJoinFailureException{
         userJoinValidate(userDto); //UserJoinFailureException 발생가능
 
-        User user = userDto.createUser();
+        User user = new User(userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
         userRepository.save(user);
 
     }

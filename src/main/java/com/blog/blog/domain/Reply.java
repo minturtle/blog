@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Getter @Setter
-public class reply {
+public class Reply {
     @Id @GeneratedValue
     private Integer id;
 
@@ -25,4 +25,14 @@ public class reply {
     @CreationTimestamp
     private Timestamp createdAt;
 
+    @Override
+    public String toString() {
+        return "Reply{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", user=" + user +
+                ", board=" + board +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

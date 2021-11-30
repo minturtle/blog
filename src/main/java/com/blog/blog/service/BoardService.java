@@ -3,6 +3,7 @@ package com.blog.blog.service;
 import com.blog.blog.domain.Board;
 import com.blog.blog.dto.BoardDto;
 import com.blog.blog.dto.BoardPreviewDto;
+import com.blog.blog.exceptions.NoBoardWithIdException;
 import com.blog.blog.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -37,5 +38,14 @@ public class BoardService {
 
     public Integer getBoardCount(){
         return boardRepository.findAll().size();
+    }
+
+    public Board getBoardById(Integer id) throws NoBoardWithIdException{
+        return boardRepository.findById(id).orElseThrow(()->{throw new NoBoardWithIdException("데이터를 찾을 수 없습니다.");});
+    }
+
+    public void addBoardCount(Integer id) throws NoBoardWithIdException{
+        Board board = boardRepository.findById(id).orElseThrow(()->{throw new NoBoardWithIdException("데이터를 찾을 수 없습니다.");});;
+        board.setCount(board.getCount()+1);
     }
 }

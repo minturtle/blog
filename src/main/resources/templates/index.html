@@ -16,7 +16,7 @@
             <div class="col w-100">
                 <div class="card mb-1" th:each="board : ${boards}">
                     <div class="card-body">
-                        <a href ="#" class="content-card">
+                        <a th:href ="|/board/${board.id}|" class="content-card">
                         <h4 class="card-title" th:text="${board.title}">Card title</h4>
                         <h5 class="card-writer" th:text="${board.writerName}">writer</h5>
                         </a>

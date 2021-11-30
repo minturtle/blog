@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${board.title}">title</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/cover.css" >
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div th:replace="/fragments/header.html :: fragment-header"></div>
+    <div class = "container">
+        <div> <span>제목 : </span><span th:text="${board.title}">제목</span> </div>
+        <div> <span>작성자 : </span><span th:text="${board.writer.username}">작성자</span> </div>
+        <div> <span>조회수 : </span><span th:text="${board.count}">조회수</span> </div>
+        <div> <span>작성일 : </span><span th:text="${board.createdAt}">작성된 날</span> </div>
+        <hr />
+        <div>
+            <p th:text="${board.content}">내용</p>
+        </div>
+        <hr />
+        <div th:each="reply : ${board.replies}" class="mb-2">
+            <div th:text="|댓글 작성자 : ${reply.user?.username}|">dd</div>
+            <div th:text="|댓글 내용 : ${reply?.content}|">dd</div>
+        </div>
+
+        <hr />
+        <div th:if="${session.user == null}">
+            로그인 후 댓글을 작성할 수 있습니다.
+        </div>
+        <div th:unless="${session.user == null}">
+            <div th:text="|${session.user.username}님, 댓글을 입력하세요!|">~님, 댓글을 입력하세요!</div>
+            <textarea placeholder="댓글을 입력하세요" cols="50" rows="10" id="comment"></textarea>
+            <br />
+            <button type="button" class="btn btn-primary" onclick="createReply()">댓글 작성</button>
+        </div>
+    </div>
+
+    <div th:replace="/fragments/footer.html :: fragment-footer"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/reply.js"></script>
+</body>
+</html>

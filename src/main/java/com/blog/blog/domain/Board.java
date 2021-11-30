@@ -36,9 +36,18 @@ public class Board {
     private Integer count; //조회수
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "board")
-    private List<reply> replies = new ArrayList<>();
+    private List<Reply> replies = new ArrayList<>();
 
     @CreationTimestamp
     private Timestamp createdAt;
 
+    @Override
+    public String toString() {
+        return "Board{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", writer=" + writer.getUsername() +
+                '}';
+    }
 }

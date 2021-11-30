@@ -23,16 +23,18 @@
                 </ul>
                 <ul class="navbar-nav" th:if="${session.user != null}">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/user/login">로그아웃</a>
+                        <a class="nav-link" aria-current="page" href="" onclick="logout()">로그아웃</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/join">글쓰기</a>
+                        <a class="nav-link" href="/board/create">글쓰기</a>
                     </li>
                 </ul>
 
             </div>
         </div>
     </nav>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/user.js"></script>
 </header>
 </body>
 </html>

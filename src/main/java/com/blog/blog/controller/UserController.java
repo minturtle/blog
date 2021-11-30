@@ -49,4 +49,10 @@ public class UserController {
         resBody.put("message", "로그인에 성공하셨습니다.");
         return new ResponseEntity<>(resBody, HttpStatus.OK);
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(){
+        session.invalidate();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

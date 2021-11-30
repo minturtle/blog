@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Content</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/cover.css" >
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div th:replace="/fragments/header.html :: fragment-header"></div>
+    <div class = "container">
+        <form action="/board/create" method="post">
+            <input type="text" name="title" class="form-control mt-4 mb-2"
+                   placeholder="제목을 입력해주세요." required>
+            <div class="form-group">
+		<textarea class="form-control" rows="10" name="content"
+                  placeholder="내용을 입력해주세요" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary mb-3 mt-3">제출하기</button>
+        </form>
+    </div>
+  <div th:replace="/fragments/footer.html :: fragment-footer"></div>
+</body>
+</html>

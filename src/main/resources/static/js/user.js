@@ -37,3 +37,12 @@ function login(){
         alert(err.responseJSON.err);
     })
 }
+
+function logout(){
+    $.ajax({
+        type:"POST",
+        url : "/user/logout"
+    }).done(()=>{
+        location.href="/"
+    })
+}

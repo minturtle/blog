@@ -34,4 +34,8 @@ public class BoardService {
         Board board = new Board(boardDto.getTitle(), boardDto.getContent(), boardDto.getWriter());
         boardRepository.save(board);
     }
+
+    public Integer getBoardCount(){
+        return boardRepository.findAll().size();
+    }
 }

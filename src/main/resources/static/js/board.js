@@ -8,3 +8,7 @@ function getBoards(page){
         console.log(res)
     })
 } */
+
+function movePage(i){
+    location.href="?page=" + i;
+}

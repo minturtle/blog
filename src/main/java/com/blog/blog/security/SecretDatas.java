@@ -1,4 +1,4 @@
-package com.blog.blog.utils;
+package com.blog.blog.security;
 
 public class SecretDatas {
 

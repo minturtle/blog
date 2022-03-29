@@ -6,9 +6,12 @@ import com.blog.blog.exceptions.LoginFailureException;
 import com.blog.blog.exceptions.UserJoinFailureException;
 import com.blog.blog.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -16,17 +19,25 @@ import org.springframework.util.StringUtils;
 public class UserService {
     private final UserRepository userRepository;
 
+    //oauth2 버전의 user만 지원
+    public void join(User user){
+        userRepository.save(user);
+    }
 
+    public User findById(Long id){
+        return userRepository.findById(id).orElse(null);
+    }
 
+    @Deprecated
     public void join(UserDto userDto) throws UserJoinFailureException{
         userJoinValidate(userDto); //UserJoinFailureException 발생가능
 
-        User user = new User(userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
-        userRepository.save(user);
-
+        //User user = new User(userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
+        //userRepository.save(user);
     }
 
 
+    @Deprecated
     @Transactional(readOnly = true)
     public User login(UserDto userDto) throws LoginFailureException{
         User findUser = userRepository.findByUsername(userDto.getUsername());
@@ -39,7 +50,7 @@ public class UserService {
         return findUser;
     }
 
-
+    @Deprecated
     private void userJoinValidate(UserDto userDto) throws UserJoinFailureException{
         if(!StringUtils.hasText(userDto.getEmail()) || !StringUtils.hasText(userDto.getUsername()) || !StringUtils.hasText(userDto.getPassword())){
             throw new UserJoinFailureException("이메일, 유저 이름, 비밀번호는 필수 값입니다.");
@@ -54,8 +65,9 @@ public class UserService {
             throw new UserJoinFailureException("비밀번호는 4글자 이상이여야 합니다.");
         }
     }
-
+    @Deprecated
     private boolean isValidPassword(UserDto userDto, User findUser) {
-        return !findUser.getPassword().equals(userDto.getPassword());
+        //return !findUser.getPassword().equals(userDto.getPassword());
+        return true;
     }
 }

@@ -1,5 +1,6 @@
 package com.blog.blog.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,35 +14,25 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class User {
 
-    public User(String username, String email, String password) {
+    public User(Long id, String username, String image, String thumbnail_image, String email) {
+        this.id = id;
         this.username = username;
+        this.image = image;
+        this.thumbnail_image = thumbnail_image;
         this.email = email;
-        this.password = password;
+        this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 
-    @Id @GeneratedValue
-    private Integer id;
+    @Id
+    private Long id;
 
-    @Column(unique = true)
     private String username;
-
-    @Column(unique = true)
+    private String image;
+    private String thumbnail_image;
     private String email;
-
-    private String password;
-
 
     @CreationTimestamp
     private Timestamp createdAt;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
-    }
+
 }

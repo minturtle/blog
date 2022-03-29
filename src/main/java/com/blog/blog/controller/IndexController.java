@@ -23,11 +23,9 @@ public class IndexController {
     public String indexPage(@RequestParam(defaultValue = "1") Integer page, Model model){
         List<BoardPreviewDto> boardPreviewDtos = boardService.getBoardsByPage(--page);
         int pageCount = boardService.getBoardCount() % 5 == 0 ? boardService.getBoardCount()/5: boardService.getBoardCount()/5 + 1;
-
-
+        model.addAttribute("session", session);
         model.addAttribute("boards", boardPreviewDtos);
         model.addAttribute("pageCount", pageCount);
-
         return "index";
     }
 

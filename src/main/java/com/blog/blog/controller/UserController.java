@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.crypto.spec.OAEPParameterSpec;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping("/oauth2/code/kakao")
-    public String kakaocallback(@RequestParam String code){
+    public String kakaocallback(@RequestParam String code, HttpServletResponse res){
 
         //엑세스 토큰 요청 헤더, 바디 생성
         MultiValueMap<String, String> params = setAccessTokenBody(code);
@@ -81,8 +83,7 @@ public class UserController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
-        System.out.println(profile.toString());
+        session.setAttribute("user", profile);
         return "redirect:/";
     }
 

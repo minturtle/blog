@@ -20,6 +20,7 @@ public class KakaoProfile {
     }
 
     @Getter
+    @ToString
     public static class KakaoAccount {
         private Boolean profile_needs_agreement;
         private Profile profile;

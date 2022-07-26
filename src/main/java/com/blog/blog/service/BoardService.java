@@ -25,7 +25,17 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public List<BoardPreviewDto> getBoardsByPage(Integer page){
+    /*
+    * input : page, 최소 1이상의 값이 들어와야함.
+    * output: (page-1) * 5+1 번째 Board부터 5개의 Board 찾아서 DTO로 변환 후 리스트로 반환.
+    *
+    * 1, page < 1이라면 IllegalArgumentException 발생
+    * 2, Pageable 객체를 생성후, dao로 부터 5개의 값을 조회한다.
+    *
+    * */
+    public List<BoardPreviewDto> getBoardsByPage(Integer page) throws IllegalArgumentException{
+        if(page < 1) throw new IllegalArgumentException("page 입력이 잘못되었습니다.");
+
         PageRequest pageRequest = PageRequest.of(page, 5);
         return boardRepository.findAll(pageRequest).getContent().stream().map((b)->{return new BoardPreviewDto(b.getId(), b.getTitle(),
                 b.getWriter() == null ? "Someone" : b.getWriter().getUsername(), b.getCreatedAt());}).collect(Collectors.toList());

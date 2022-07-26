@@ -21,7 +21,7 @@ public class IndexController {
 
     @GetMapping({"/", ""})
     public String indexPage(@RequestParam(defaultValue = "1") Integer page, Model model){
-        List<BoardPreviewDto> boardPreviewDtos = boardService.getBoardsByPage(--page);
+        List<BoardPreviewDto> boardPreviewDtos = boardService.getBoardsByPage(page);
         int pageCount = boardService.getBoardCount() % 5 == 0 ? boardService.getBoardCount()/5: boardService.getBoardCount()/5 + 1;
 
 

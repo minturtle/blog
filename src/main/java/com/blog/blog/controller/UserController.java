@@ -34,7 +34,7 @@ public class UserController {
 
     @GetMapping("/join")
     public String joinForm(){
-        return "/user/joinForm";
+        return "user/joinForm";
     }
 
     @PostMapping("/join")
@@ -99,7 +99,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String loginForm(){
-        return "/user/loginForm";
+        return "user/loginForm";
     }
 
     @PostMapping("/login")

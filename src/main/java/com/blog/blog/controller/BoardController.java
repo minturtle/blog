@@ -25,7 +25,7 @@ public class BoardController {
 
     @GetMapping("/create")
     public String boardForm(){
-        return "/board/boardForm";
+        return "board/boardForm";
     }
 
     @PostMapping("/create")
@@ -42,7 +42,7 @@ public class BoardController {
         boardService.addBoardCount(id);
         model.addAttribute("board", board);
 
-        return "/board/board";
+        return "board/board";
     }
 
 

@@ -9,7 +9,7 @@
     <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div th:replace="/fragments/header.html :: fragment-header"></div>
+    <div th:replace="fragments/header.html :: fragment-header"></div>
     <div class = "container">
         <div> <span>제목 : </span><span th:text="${board.title}">제목</span> </div>
         <div> <span>작성자 : </span><span th:text="${board.writer.username}">작성자</span> </div>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div th:replace="/fragments/footer.html :: fragment-footer"></div>
+    <div th:replace="fragments/footer.html :: fragment-footer"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/js/reply.js"></script>
 </body>

@@ -9,7 +9,7 @@
     <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div th:replace="/fragments/header.html :: fragment-header"></div>
+    <div th:replace="fragments/header.html :: fragment-header"></div>
     <div class = "container">
             <div class="mb-3">
                 <label class="form-label">Username</label>
@@ -27,7 +27,7 @@
         <br>
         <a href="https://kauth.kakao.com/oauth/authorize?client_id=086f34e5e6e7276238923c999a5db18b&redirect_uri=http://localhost:8080/user/oauth2/code/kakao&response_type=code"><img src="/images/kakao_login_medium_narrow.png"></a>
     </div>
-    <div th:replace="/fragments/footer.html :: fragment-footer"></div>
+    <div th:replace="fragments/footer.html :: fragment-footer"></div>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

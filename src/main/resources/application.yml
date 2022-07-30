@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url:
-    username:
-    password:
+    url: jdbc:mysql://my-database.cepxmfupduwk.ap-northeast-2.rds.amazonaws.com:3306/blog?characterEncoding=utf8&autoReconnect=TRUE
+    username: root
+    password: helloworld11
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

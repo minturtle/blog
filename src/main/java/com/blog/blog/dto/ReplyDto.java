@@ -1,5 +1,6 @@
 package com.blog.blog.dto;
 
+import com.blog.blog.domain.Reply;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,5 @@ public class ReplyDto {
                 ", boardId=" + boardId +
                 '}';
     }
+
 }

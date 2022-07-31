@@ -35,7 +35,6 @@ public class BoardService {
     public List<BoardPreviewDto> getBoardsByPage(Integer page) throws IllegalArgumentException{
         if(page < 1 || page > getMaxPage()) throw new IllegalArgumentException("page 입력이 잘못되었습니다.");
 
-
         //1, 이때 PageRequest는 0부터 시작하므로 page-1을 해준다.
         PageRequest pageRequest = PageRequest.of(page-1, 5);
         return boardRepository.findAll(pageRequest).getContent().stream().map(b->new BoardPreviewDto(b.getId(), b.getTitle(),
@@ -64,7 +63,6 @@ public class BoardService {
 
     /*
     * 현재 저장되어 있는 board의 총 갯수를 리턴하는 메서드
-    *
     * */
     public Integer getBoardCount(){
         return boardRepository.findAll().size();

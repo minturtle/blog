@@ -4,9 +4,8 @@ import static org.mockito.BDDMockito.given;
 
 import com.blog.blog.domain.Board;
 import com.blog.blog.domain.User;
-import com.blog.blog.dto.ReplyDto;
+
 import com.blog.blog.repository.BoardRepository;
-import com.blog.blog.repository.ReplyRepository;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 
+//Mock 환경 안에서 돌아감.
 @ExtendWith(MockitoExtension.class)
 class BoardServiceTest {
 
@@ -28,10 +28,6 @@ class BoardServiceTest {
 
     @Mock
     BoardRepository boardRepository;
-
-    @Mock
-    ReplyRepository replyRepository;
-
 
     @Test
     @DisplayName("getBoardId : board 조회 성공")
@@ -63,26 +59,27 @@ class BoardServiceTest {
     @Test
     @DisplayName("getBoardCount")
     void t3(){
-        //set boardRepository mock
+        //given
         given(boardRepository.findAll()).willReturn(List.of(new Board(), new Board(),new Board(),new Board(),new Board()));
 
+        //when
         assertThat(boardService.getBoardCount()).isEqualTo(5);
     }
 
     @Test
     @DisplayName("addBoardCount : board 조회 성공")
     void t4(){
-        //set board
+        //given
         int boardId = 1;
         User user = new User("user1", "a@naver.com", "pww");
         Board board = new Board("aa", "bb",user);
         board.setId(boardId);
 
-        //set boardRepository mock
         given(boardRepository.findById(boardId)).willReturn(Optional.of(board));
-
+        //when
         for(int i = 0; i < 3; i++) boardService.addBoardCount(boardId);
 
+        //then
         assertThat(board.getCount()).isEqualTo(3);
     }
 
@@ -131,5 +128,6 @@ class BoardServiceTest {
 
         assertThat(boardService.getMaxPage()).isEqualTo(2);
     }
+
 
 }

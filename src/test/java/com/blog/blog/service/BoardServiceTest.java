@@ -32,25 +32,29 @@ class BoardServiceTest {
     @Test
     @DisplayName("getBoardId : board 조회 성공")
     void t1(){
-        //set board
+        //given
         int boardId = 1;
         User user = new User("user1", "a@naver.com", "pww");
         Board board = new Board("aa", "bb",user);
         board.setId(boardId);
 
-        //set boardRepository mock
         given(boardRepository.findById(boardId)).willReturn(Optional.of(board));
 
-        assertThat(boardService.getBoardById(boardId)).isEqualTo(board);
+        //when
+        Board foundBoard = boardService.getBoardById(boardId);
+
+        //then
+        assertThat(foundBoard).isEqualTo(board);
     }
 
     @Test
     @DisplayName("getBoardId : board 조회 실패")
     void t2(){
+        //given
         int boardId = 3;
-        //boardRepository mock setting
         given(boardRepository.findById(boardId)).willReturn(Optional.ofNullable(null));
 
+        //when & then
         assertThatThrownBy(()->{
            boardService.getBoardById(boardId);
         }).isInstanceOf(IllegalArgumentException.class);
@@ -87,10 +91,11 @@ class BoardServiceTest {
     @DisplayName("addBoardCount : board 조회 실패")
     void t5(){
 
+        //given
         int boardId = 5;
-        //set boardRepository mock
         given(boardRepository.findById(boardId)).willReturn(Optional.ofNullable(null));
 
+        //when, then
         assertThatThrownBy(()->{
            boardService.addBoardCount(boardId);
         }).isInstanceOf(IllegalArgumentException.class);
@@ -99,34 +104,46 @@ class BoardServiceTest {
     @Test
     @DisplayName("getMaxPage : 저장된 board가 0개일 때")
     void t6(){
-        //set boardRepository mock
+        //given
         given(boardRepository.findAll()).willReturn(List.of());
 
-        assertThat(boardService.getMaxPage()).isEqualTo(1);
+        //when
+        int maxPage = boardService.getMaxPage();
+        //then
+        assertThat(maxPage).isEqualTo(1);
     }
     @Test
     @DisplayName("getMaxPage : 저장된 board가 1개일 때")
     void t7(){
-        //set boardRepository mock
+        //given
         given(boardRepository.findAll()).willReturn(List.of(new Board()));
 
-        assertThat(boardService.getMaxPage()).isEqualTo(1);
+        //when
+        int maxPage = boardService.getMaxPage();
+        //then
+        assertThat(maxPage).isEqualTo(1);
     }
     @Test
     @DisplayName("getMaxPage : 저장된 board가 5개일 때")
     void t8(){
-        //set boardRepository mock
+        //given
         given(boardRepository.findAll()).willReturn(List.of(new Board(),new Board(),new Board(),new Board(),new Board()));
 
-        assertThat(boardService.getMaxPage()).isEqualTo(1);
+        //when
+        int maxPage = boardService.getMaxPage();
+        //then
+        assertThat(maxPage).isEqualTo(1);
     }
     @Test
     @DisplayName("getMaxPage : 저장된 board가 6개일 때")
     void t9(){
-        //set boardRepository mock
+        //given
         given(boardRepository.findAll()).willReturn(List.of(new Board(),new Board(),new Board(),new Board(),new Board(),new Board()));
 
-        assertThat(boardService.getMaxPage()).isEqualTo(2);
+        //when
+        int maxPage = boardService.getMaxPage();
+        //then
+        assertThat(maxPage).isEqualTo(2);
     }
 
 

@@ -16,6 +16,5 @@ RUN chmod +x ./gradlew
 RUN ./gradlew Bootjar
 
 
-
 WORKDIR /build/libs
 ENTRYPOINT ["java", "-jar", "blog-0.0.1-SNAPSHOT.jar"]

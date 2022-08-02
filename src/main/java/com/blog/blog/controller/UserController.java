@@ -21,8 +21,7 @@ public class UserController {
 
     private final UserService userService;
     private final HttpSession session;
-    
-    
+
     /*
     * join Form을 보여주는 메서드
     * */
@@ -43,6 +42,7 @@ public class UserController {
         userService.join(userDto);
         Map<String, String> resBody = new HashMap<>();
         resBody.put("message", "회원가입에 성공하셨습니다.");
+
         return new ResponseEntity<>(resBody, HttpStatus.OK);
     }
 
